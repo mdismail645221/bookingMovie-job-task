@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // multi carousel 
 import 'react-multi-carousel/lib/styles.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <App />
+    < Toaster />
   </React.StrictMode>
 );
 

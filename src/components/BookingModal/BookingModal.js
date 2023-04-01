@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-
+import toast from 'react-hot-toast';
 const BookingModal = ({ handleClose, handleShow, shows, setShows, movie }) => {
 
 
@@ -18,7 +18,11 @@ const BookingModal = ({ handleClose, handleShow, shows, setShows, movie }) => {
                 name: name,
                  email: email,
                   movie: movie}
-            localStorage.setItem(`bookingInfo`, JSON.stringify([bookingInfo]) )
+            const preBook = localStorage.getItem('bookingInfo')
+            console.log({preBook})
+            localStorage.setItem(`bookingInfo`, JSON.stringify({ ...preBook , bookingInfo}) )
+            toast.success("successfully booking. Good Job", {duration: 3000})
+            handleClose(setShows(true))
         }
     }
 
@@ -51,7 +55,7 @@ const BookingModal = ({ handleClose, handleShow, shows, setShows, movie }) => {
                                 name="email"
                             />
                         </Form.Group>
-                        <Button variant="primary" type='submit' >
+                        <Button variant="primary" type='submit' onClick={() => handleClose => setShows(false)}>
                             Book Now
                         </Button>
                     </Form>
