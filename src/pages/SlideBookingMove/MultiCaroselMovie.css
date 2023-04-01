@@ -1,0 +1,5 @@
+.multiCarouselContainer, .multiCarousel{
+    background-color: aquamarine;
+    height: 70vh;
+    overflow: hidden;
+}
