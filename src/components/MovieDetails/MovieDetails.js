@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import Image from 'react-bootstrap/Image'
+import BookingModal from '../BookingModal/BookingModal';
+import Button from 'react-bootstrap/Button';
 
 const MovieDetails = () => {
+    const [shows, setShows] = useState(false);
+    const handleClose = () => setShows(false);
+    const handleShow = () => setShows(true);
+
     const { state } = useLocation();
     const {movie} = state;
     const { score, show } = movie;
@@ -19,10 +25,21 @@ const MovieDetails = () => {
                         <h1>Movie Name: <span>{show?.name}</span></h1>
                         <h3>Status: <span>{show?.status}</span></h3>
                         <p>{show?.summary}</p>
-                        <button className='btn btn-primary'>Booking Movie</button>
+                        <Button variant="primary" onClick={handleShow}>
+                            Booking Movie
+                        </Button>
+                        {/* <button className='btn btn-primary'>Booking Movie</button> */}
                     </div>
                 </div>
             </div>
+
+            <BookingModal 
+                handleClose={handleClose}
+                handleShow={handleShow}
+                shows={shows}
+                setShows={setShows}
+                movie={movie}
+            ></BookingModal>
         </section>
     );
 };
